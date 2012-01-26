@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}- {{ protein.protein_name }}{% endblock %}
+{% block content %}
+    <h2>Protein Information:</h2>
+    <ul>
+		<div>
+			<table class="datatable">
+			<tr>
+			    <th colspan="2" class="detail_header">Protein</th>
+			</tr>
+			<tr>
+			    <th class="detail_subheader">Name</th>
+				<td>{{ protein.protein_name }}</td>
+			</tr>
+			<tr>
+			    <th class="detail_subheader">Uniprot Accession</th>
+			    <td><a href="http://beta.uniprot.org/uniprot/{{ protein.protein_uniprotaccession }}" target="_blank">{{ protein.protein_uniprotaccession }}</a></td>
+			</tr>
+			<tr>
+			    <th class="detail_subheader">Length</th>
+				<td>{{ protein.protein_length }}</td>
+			</tr>
+			<tr>
+			    <th class="detail_subheader">Description</th>
+				<td>{{ protein.protein_description }}</td>
+			</tr>
+			<tr>
+			    <th class="detail_subheader">Sequence</th>
+				<td><div class="sequence">
+                		{{ protein.protein_sequence }}
+			        </div></td>
+			</tr>	
+			<tr>
+			    <th class="detail_subheader">Disorder %</th>
+				<td>{{ protein.protein_percentageofdisorder }} %</td>
+			</tr>																																																					
+			</table>
+			<table class="datatable">
+			<tr>
+			    <th class="detail_header">Lab Results</th>
+			</tr>
+			{% for disorderlab in protein.disorderlab_set.all %}
+			<tr>
+			    <td><div class="sequence">
+				{{ disorderlab.disorderlab_sequence }}
+				</div></td>
+			</tr>
+			{% endfor %}																																																					
+			</table>
+			<table class="datatable">
+			<tr>
+			    <th class="detail_header">Prediction Results (Pre-Mutation)</th>
+			</tr>
+			{% for individualpreresultorigprotein in protein.individualpreresultorigprotein_set.all %}
+			<tr>
+			    <td><div class="sequence">
+				{{ individualpreresultorigprotein.individualpreresultorigprotein_sequence }}</div></td>
+			</tr>
+			{% endfor %}																																																					
+			</table>
+			<table class="datatable">
+			<tr>
+			    <th class="detail_header">Prediction Results (Mutated)</th>
+			</tr>
+			{% for individualpreresultmutprotein in protein.individualpreresultmutprotein_set.all %}
+			<tr>
+			    <td><div class="sequence">
+				{{ individualpreresultmutprotein.individualpreresultmutprotein_sequence }}</div></td>
+			</tr>
+			{% endfor %}																																																					
+			</table>													
+		</div>
+        <div>
+			<a href="../">Back to protein index...</a>
+		</div>
+    </ul>
+{% endblock %}

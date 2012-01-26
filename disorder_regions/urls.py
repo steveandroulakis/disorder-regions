@@ -4,14 +4,28 @@ from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
+from django.views.generic import DetailView
+
+from disorder_regions.disorder.ProteinListView import ProteinListView
+from disorder_regions.disorder.models import Protein
+
+core_urls = patterns(
+    'disorder_regions.disorder.views',
+    (r'^$', 'index'),
+)
+
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'disorder_regions.views.home', name='home'),
-    # url(r'^disorder_regions/', include('disorder_regions.foo.urls')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'', include(core_urls)),
 
-    # Uncomment the next line to enable the admin:
+    (r'^protein/$',
+        ProteinListView.as_view()
+    ),
+    
+    (r'^protein/(?P<pk>\w+)/$',
+        DetailView.as_view(
+            model=Protein,
+    )),    
+
     url(r'^admin/', include(admin.site.urls)),
 )

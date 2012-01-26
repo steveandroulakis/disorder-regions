@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}- Proteins{% endblock %}
+{% block content %}
+{% include "disorder/includes/pagination.html" %}
+    <h2>Proteins</h2>
+    <ul>
+		<div>
+			<table class="datatable">
+			<tr>
+			    <th>Protein</th>
+			    <th>Class</th>
+			</tr>
+			{% for protein in protein_list %}
+			<tr>
+			    <td><a href="{{protein.protein_uniprotaccession}}">{{ protein.protein_uniprotaccession }}</a></td>
+				<td>{{ protein.protein_name }}</td>									
+			</tr>
+			{% endfor %}																																						
+			</table>
+		</div>
+        
+    </ul>
+{% include "disorder/includes/pagination.html" %}
+{% endblock %}

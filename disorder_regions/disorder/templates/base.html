@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link type="text/css" href="{{ STATIC_URL }}/css/style.css" rel="stylesheet" />
+    <title>Disorder {% block title %}{% endblock %}</title>
+	
+	{% block script %}{% endblock %}
+	
+	{# this is for deployment-specific code such as analytics #}
+	{% include "disorder/includes/site-specific-head.html" %}
+</head>
+
+<body>
+	<div id="header" class="clearfix">
+		<div class="container">
+			
+			<div class="site-logo">
+				<a href="/">Disorder</a>
+			</div>
+			
+			<div class="search-container">
+				Search: coming soon
+			</div>
+			
+			<div class="link-container">
+				Links
+			</div>			
+						
+		</div>
+	</div>
+	
+    <div id="sidebar">
+        {% block sidebar %}
+        {# <ul> #}
+        {#     <li><a href="/">Home</a></li> #}
+        {#     <li><a href="/blog/">Blog</a></li> #}
+        {# </ul> #}
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+	
+	<div id="footer">
+		Disorder version: {% include "disorder/includes/version.html" %}
+	</div>
+</body>
+</html>
