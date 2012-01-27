@@ -184,3 +184,21 @@ input {
     font-size: 10px;
     text-align: center;
 }
+
+.content-box
+{
+    padding: 4px;
+    margin: 8px;
+}
+
+.black-box
+{
+    border-size: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+.hidden
+{
+    visibility:hidden;
+}

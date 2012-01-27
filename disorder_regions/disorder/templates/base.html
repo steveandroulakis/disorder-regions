@@ -4,10 +4,13 @@
 	<link type="text/css" href="{{ STATIC_URL }}/css/style.css" rel="stylesheet" />
     <title>Disorder {% block title %}{% endblock %}</title>
 	
+	{% include "disorder/includes/js.html" %}
+	
 	{% block script %}{% endblock %}
 	
 	{# this is for deployment-specific code such as analytics #}
 	{% include "disorder/includes/site-specific-head.html" %}
+		
 </head>
 
 <body>
