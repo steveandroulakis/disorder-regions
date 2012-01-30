@@ -38,35 +38,41 @@
 			</table>
 			<table class="datatable">
 			<tr>
-			    <th class="detail_header">Lab Results</th>
+			    <th class="detail_header">Original Protein</th>
 			</tr>
+			<tr>
+			    <th>Lab Results</th>
+			</tr>			
 			{% for disorderlab in protein.disorderlab_set.all %}
 			<tr>
 			    <td><div class="sequence">
-				{{ disorderlab.disorderlab_sequence }}
+				{{ disorderlab|safe }}
 				</div></td>
 			</tr>
-			{% endfor %}																																																					
-			</table>
-			<table class="datatable">
+			{% endfor %}	
 			<tr>
-			    <th class="detail_header">Prediction Results (Pre-Mutation)</th>
-			</tr>
+			    <th>Predicted</th>
+			</tr>			
 			{% for individualpreresultorigprotein in protein.individualpreresultorigprotein_set.all %}
 			<tr>
 			    <td><div class="sequence">
-				{{ individualpreresultorigprotein.individualpreresultorigprotein_sequence }}</div></td>
+				{{ individualpreresultorigprotein|safe }}<br/>
+				</div></td>
 			</tr>
-			{% endfor %}																																																					
+			{% endfor %}																																																							
 			</table>
 			<table class="datatable">
 			<tr>
-			    <th class="detail_header">Prediction Results (Mutated)</th>
+			    <th class="detail_header">Mutated Protein</th>
 			</tr>
-			{% for individualpreresultmutprotein in protein.individualpreresultmutprotein_set.all %}
+			<tr>
+			    <th>Predicted</th>
+			</tr>			
+			{% for individualpreresultorigprotein in protein.individualpreresultorigprotein_set.all %}
 			<tr>
 			    <td><div class="sequence">
-				{{ individualpreresultmutprotein.individualpreresultmutprotein_sequence }}</div></td>
+				{{ individualpreresultorigprotein|safe }}
+				</div></td>
 			</tr>
 			{% endfor %}																																																					
 			</table>													

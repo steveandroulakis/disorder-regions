@@ -1,4 +1,5 @@
 from django.db import models
+from disorder_regions.disorder.shortcuts import highlight_region
 
 class Protein(models.Model):
     protein_uniprotaccession = models.CharField(max_length=135, primary_key=True, db_column='protein_uniprotAccession')
@@ -36,7 +37,12 @@ class Disorderlab(models.Model):
     disorderlab_functionid_fr = models.ForeignKey(Disorderlabfunction, db_column='disorderLab_functionID_FR')
     disorderlab_methodid_fr = models.ForeignKey(Disorderlabmethod, db_column='disorderLab_methodID_FR')
     class Meta:
-        db_table = u'disorderlab'        
+        db_table = u'disorderlab'
+    def __unicode__(self):
+        return highlight_region(
+            self.disorderlab_proteinuniprot_fr.protein_sequence,
+            self.disorderlab_start,
+            self.disorderlab_end)             
 
 class Disorderpredictorresults(models.Model):
     disorderpredictorresult_id = models.IntegerField(primary_key=True, db_column='disorderPredictorResult_ID')
@@ -96,6 +102,12 @@ class Individualpreresultmutprotein(models.Model):
     individualpreresultmutprotein_sequence = models.TextField(db_column='individualPreResultMutProtein_sequence', blank=True)
     class Meta:
         db_table = u'individualpreresultmutprotein'
+        
+    def __unicode__(self):
+        return highlight_region(
+            self.individualpreresultmutprotein_uniprot_fr.protein_sequence,
+            self.individualpreresultmutprotein_start,
+            self.individualpreresultmutprotein_end)        
 
 class Individualpreresultorigprotein(models.Model):
     individualpreresultorigprotein_id = models.IntegerField(primary_key=True, db_column='individualPreResultOrigProtein_ID')
@@ -106,3 +118,9 @@ class Individualpreresultorigprotein(models.Model):
     individualpreresultorigprotein_sequence = models.TextField(db_column='individualPreResultOrigProtein_sequence', blank=True)
     class Meta:
         db_table = u'individualpreresultorigprotein'
+        
+    def __unicode__(self):
+        return highlight_region(
+            self.individualpreresultorigprotein_proteinuniprot_fr.protein_sequence,
+            self.individualpreresultorigprotein_start,
+            self.individualpreresultorigprotein_end)
