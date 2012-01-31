@@ -7,7 +7,8 @@ admin.autodiscover()
 from django.views.generic import DetailView
 
 from disorder_regions.disorder.ProteinListView import ProteinListView
-from disorder_regions.disorder.models import Protein
+from disorder_regions.disorder.models import Protein, Disorderlab, \
+    Individualpreresultorigprotein
 
 core_urls = patterns(
     'disorder_regions.disorder.views',
@@ -25,6 +26,16 @@ urlpatterns = patterns('',
     (r'^protein/(?P<pk>\w+)/$',
         DetailView.as_view(
             model=Protein,
+    )),    
+    
+    (r'^disorderlab/(?P<pk>\w+)/$',
+        DetailView.as_view(
+            model=Disorderlab,
+    )),    
+    
+    (r'^individualpreresultorigprotein/(?P<pk>\w+)/$',
+        DetailView.as_view(
+            model=Individualpreresultorigprotein,
     )),    
 
     url(r'^admin/', include(admin.site.urls)),

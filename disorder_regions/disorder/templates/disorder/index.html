@@ -1,43 +1,5 @@
 {% extends "base.html" %}
 {% block script %}
-<script language="javascript">
-	// to move to global js after testing
-	$(document).ready(function() {
-		
-		plus_path = "{{ STATIC_URL }}/img/icon-plus.png";
-		minus_path = "{{ STATIC_URL }}/img/icon-minus.png";
-
-        $('.toggleButton').live("click", function() {
-			icon = $(this).find('.toggleIcon');
-			content = $(this).next();
-			href = $(this).attr('href');
-
-			if(icon.attr('src') == plus_path)
-			{
-				icon.attr('src', minus_path);
-
-				$.ajax({
-				  url: href,
-				  success: function(data) {
-				    content.html(data);
-				  }
-				});
-						
-				content.removeClass('hidden');
-				content.addClass('content-box');
-			}
-			else {
-				icon.attr('src', plus_path);
-				content.addClass('hidden');
-				content.removeClass('content-box');				
-				content.html('');
-			}
-			
-			return false;
-			
-        });
-	});
-</script>
 {% endblock %}
 {% block content %}
 <div class="index-container">

@@ -45,9 +45,14 @@
 			</tr>			
 			{% for disorderlab in protein.disorderlab_set.all %}
 			<tr>
-			    <td><div class="sequence">
+			    <td>
+				<a class="toggleNext" href="../../disorderlab/{{disorderlab.disorderlab_id}}">
+				<div class="sequence">
 				{{ disorderlab|safe }}
-				</div></td>
+				</div>
+				</a>
+				<div class="hidden"></div>				
+				</td>
 			</tr>
 			{% endfor %}	
 			<tr>
@@ -55,9 +60,15 @@
 			</tr>			
 			{% for individualpreresultorigprotein in protein.individualpreresultorigprotein_set.all %}
 			<tr>
-			    <td><div class="sequence">
-				{{ individualpreresultorigprotein|safe }}<br/>
-				</div></td>
+			    <td>
+				<a class="toggleNext" href="../../individualpreresultorigprotein/
+					{{individualpreresultorigprotein.individualpreresultorigprotein_id}}">
+				<div class="sequence">
+				{{ individualpreresultorigprotein|safe }}
+				</div>
+				</a>
+				<div class="hidden"></div>				
+				</td>			
 			</tr>
 			{% endfor %}																																																							
 			</table>
