@@ -2,12 +2,22 @@
 
 {% block title %}- {{ protein.protein_name }}{% endblock %}
 {% block content %}
-    <h2>Protein Information:</h2>
+	<ul>
+		<li><a href="#protein_information">Protein Information</a></li>
+		<li><a href="#original_protein">Original Protein</a></li>
+		<ul>
+			<li><a href="#lab_results">Lab Results</a></li>
+			<li><a href="#predicted">Predicted</a></li>			
+		</ul>		
+		<li><a href="#mutated_proteins">Mutated Protein</a></li>
+	</ul>
+
+    <h2><a name="protein_information">Protein Information:</a></h2>
     <ul>
 		<div>
 			<table class="datatable">
 			<tr>
-			    <th colspan="2" class="detail_header">Protein</th>
+			    <th colspan="2" class="detail_header"><a name="protein">Protein</a></th>
 			</tr>
 			<tr>
 			    <th class="detail_subheader">Name</th>
@@ -38,52 +48,83 @@
 			</table>
 			<table class="datatable">
 			<tr>
-			    <th class="detail_header">Original Protein</th>
+			    <th colspan="5" class="detail_header"><a name="original_protein">Original Protein<a/></th>
 			</tr>
 			<tr>
-			    <th>Lab Results</th>
-			</tr>			
+			    <th colspan="5"><a name="lab_results">Lab Results</a></th>
+			<tr>
+				<td>Sequence</td>
+				<td>Start</td>
+				<td>End</td>
+				<td>Function</td>
+				<td>Method</td>
+			</tr>
 			{% for disorderlab in protein.disorderlab_set.all %}
 			<tr>
-			    <td>
-				<a class="toggleNext" href="../../disorderlab/{{disorderlab.disorderlab_id}}">
-				<div class="sequence">
-				{{ disorderlab|safe }}
-				</div>
-				</a>
-				<div class="hidden"></div>				
+				<td>
+					<a class="toggleNext" href="../../disorderlab/{{disorderlab.disorderlab_id}}">
+					<div class="sequence">{{ disorderlab.disorderlab_sequence }}</div>
+					</a>
+					<div class="hidden"></div>
 				</td>
+				<td>{{ disorderlab.disorderlab_start }}</td>
+				<td>{{ disorderlab.disorderlab_end }}</td>
+				<td>{{ disorderlab.disorderlab_functionid_fr.disorderlabfunction_name }}</td>
+				<td>{{ disorderlab.disorderlab_methodid_fr.disorderlabmethod_name }}</td>				
 			</tr>
-			{% endfor %}	
+			{% endfor %}
+			</table>
+			
+			<table class="datatable">	
 			<tr>
-			    <th>Predicted</th>
+			    <th colspan="4"><a name="predicted">Predicted</a></th>
 			</tr>			
+			<tr>
+				<td>Sequence</td>
+				<td>Start</td>
+				<td>End</td>
+				<td>Predictor</td>
+			</tr>
 			{% for individualpreresultorigprotein in protein.individualpreresultorigprotein_set.all %}
 			<tr>
-			    <td>
-				<a class="toggleNext" href="../../individualpreresultorigprotein/
-					{{individualpreresultorigprotein.individualpreresultorigprotein_id}}">
-				<div class="sequence">
-				{{ individualpreresultorigprotein|safe }}
-				</div>
-				</a>
-				<div class="hidden"></div>				
-				</td>			
+				<td>
+					<a class="toggleNext" href="../../individualpreresultorigprotein/
+						{{individualpreresultorigprotein.individualpreresultorigprotein_id}}">
+					<div class="sequence">{{ individualpreresultorigprotein.individualpreresultorigprotein_sequence }}</div>
+					</a>
+					<div class="hidden"></div>
+				</td>
+				<td>{{ individualpreresultorigprotein.individualpreresultorigprotein_start }}</td>
+				<td>{{ individualpreresultorigprotein.individualpreresultorigprotein_end }}</td>
+				<td>{{ individualpreresultorigprotein.individualpreresultorigprotein_predictorid_fr.predictor_name }}</td>				
 			</tr>
 			{% endfor %}																																																							
 			</table>
+			
 			<table class="datatable">
 			<tr>
-			    <th class="detail_header">Mutated Protein</th>
+			    <th class="detail_header"><a name="mutated_proteins">Mutated Proteins</a></th>
 			</tr>
 			<tr>
 			    <th>Predicted</th>
 			</tr>			
-			{% for individualpreresultorigprotein in protein.individualpreresultorigprotein_set.all %}
+			{% for mutprotein in protein.mutprotein_set.all %}
 			<tr>
-			    <td><div class="sequence">
-				{{ individualpreresultorigprotein|safe }}
-				</div></td>
+			    <td>
+				<div class="sequence">
+				{{ mutprotein|safe }}
+				</div>
+				<p>Disease: {{ mutprotein.mutprotein_disease_id_fr.proteinmutationdisease_name }}</p>
+				{% for disochange in mutprotein.individualpremutproteindisochange_set.all %}
+				<p>
+					Orig score: {{ disochange.individualpremutproteindisochange_origscore }}<br/>
+					Mut score: {{ disochange.individualpremutproteindisochange_mutscore }}<br/>	
+					Score change: {{ disochange.individualpremutproteindisochange_scorechange }}<br/>
+					Disorder change: {{ disochange.individualpremutproteindisochange_disorderchange }}<br/>		
+				</p>							
+				{% endfor %}
+				
+				</td>
 			</tr>
 			{% endfor %}																																																					
 			</table>													

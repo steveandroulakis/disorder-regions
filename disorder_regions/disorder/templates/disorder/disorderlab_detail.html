@@ -1,7 +1,1 @@
-<ul>
-	<li>Region: <div class="sequence">{{ disorderlab.disorderlab_sequence }}</div><br/></li>
-	<li>Start: {{ disorderlab.disorderlab_start }}</li>
-	<li>End: {{ disorderlab.disorderlab_end }}</li>
-	<li>Function: {{ disorderlab.disorderlab_functionid_fr.disorderlabfunction_name }}</li>
-	<li>Method: {{ disorderlab.disorderlab_methodid_fr.disorderlabmethod_name }}</li>
-</ul>
+<div class="sequence">{{disorderlab|safe}}</div>

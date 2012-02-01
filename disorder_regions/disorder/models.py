@@ -1,5 +1,6 @@
 from django.db import models
-from disorder_regions.disorder.shortcuts import highlight_region
+from disorder_regions.disorder.shortcuts import highlight_region, \
+    highlight_mutation
 
 class Protein(models.Model):
     protein_uniprotaccession = models.CharField(max_length=135, primary_key=True, db_column='protein_uniprotAccession')
@@ -76,7 +77,13 @@ class Mutprotein(models.Model):
     mutprotein_mutatedaa = models.CharField(max_length=135, db_column='mutProtein_MutatedAA')
     mutprotein_disease_id_fr = models.ForeignKey(Proteinmutationdisease, db_column='mutProtein_disease_ID_FR')
     class Meta:
-        db_table = u'mutprotein'             
+        db_table = u'mutprotein' 
+        
+    def __unicode__(self):
+        return highlight_mutation(
+            self.mutprotein_proteinuniprot_fr.protein_sequence,
+            self.mutprotein_mutationposition,
+            self.mutprotein_mutatedaa)                    
 
 class Individualpremutproteindisochange(models.Model):
     individualpremutproteindisochange_id = models.IntegerField(primary_key=True, db_column='individualPreMutProteinDisoChange_ID')
