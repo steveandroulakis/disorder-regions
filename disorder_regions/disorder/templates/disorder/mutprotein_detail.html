@@ -1,0 +1,53 @@
+<table class="datatable">
+	<tr>
+		<th class="table_subheader">Sequence</th>
+	</tr>
+	<td>
+		<div class="sequence">{{mutprotein|safe}}</div>
+	</td>
+<br/>
+<table class="datatable">	
+<tr>
+    <th colspan="4"><a name="mutated_proteins">Scores</a></th>
+</tr>			
+<tr>
+	<th class="table_subheader">Original</th>
+	<th class="table_subheader">Mutated</th>
+	<th class="table_subheader">Change</th>
+	<th class="table_subheader">Disorder Change</th>
+</tr>
+{% for disochange in mutprotein.individualpremutproteindisochange_set.all %}
+<tr>
+	<td>{{ disochange.individualpremutproteindisochange_origscore }}</td>
+	<td>{{ disochange.individualpremutproteindisochange_mutscore }}</td>
+	<td>{{ disochange.individualpremutproteindisochange_scorechange }}</td>				
+	<td>{{ disochange.individualpremutproteindisochange_disorderchange }}</td>					
+</tr>
+{% endfor %}																																																							
+</table>
+
+<table class="datatable">	
+<tr>
+    <th colspan="4">Predicted</th>
+</tr>			
+<tr>
+	<th class="table_subheader">Sequence</th>
+	<th class="table_subheader">Start</th>
+	<th class="table_subheader">End</th>
+	<th class="table_subheader">Predictor</th>
+</tr>
+{% for individualpreresultmutprotein in mutprotein.individualpreresultmutprotein_set.all %}
+<tr>
+	<td>
+		<a class="toggleNext" href="../../individualpreresultmutprotein/
+			{{individualpreresultmutprotein.individualpreresultmutprotein_id}}">
+		<div class="sub_sequence">{{ individualpreresultmutprotein.individualpreresultmutprotein_sequence }}</div>
+		</a>
+		<div class="hidden"></div>
+	</td>
+	<td>{{ individualpreresultmutprotein.individualpreresultmutprotein_start }}</td>
+	<td>{{ individualpreresultmutprotein.individualpreresultmutprotein_end }}</td>
+	<td>{{ individualpreresultmutprotein.individualpreresultmutprotein_predictorid_fr.predictor_name }}</td>				
+</tr>
+{% endfor %}																																																							
+</table>

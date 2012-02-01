@@ -3,6 +3,35 @@ body{
   font-family:Helvetica,arial,freesans,clean,sans-serif;
 }
 
+div.floating-menu {position:fixed; width:150px;z-index:100;
+    top: 80px;  left: auto; right: 20px;}
+
+#navcontainer ul
+{
+list-style-type: none;
+text-align: left;
+}
+
+#navcontainer ul li a
+{
+background: transparent url(images/list-off.gif) left center no-repeat;
+padding-left: 0;
+text-align: left;
+font: normal 11px "Lucida Grande", "Lucida Sans Unicode", verdana, lucida, sans-serif;
+text-decoration: none;
+color: #999;
+}
+
+#navcontainer ul li a:hover
+{
+color: black;
+}
+
+#navcontainer ul li a#current
+{
+color: #666;
+}
+
 ul {
 	list-style-type: none;
 	list-style-image: inherit;
@@ -51,6 +80,33 @@ table.datatable th
     font-weight: bold;
     color: #EA4833;
 }
+table.datatable th {
+    background: #eee;
+    
+}
+table.datatable th.table_subheader
+{
+    text-align: left;
+    margin: 0;
+    padding: 4px;
+    border-width: 1px 1px 0 0;
+    font-weight: bold;
+    color: #0B4E5E;
+    font-size: 80%;
+}
+
+table.datatable {
+    border-color: #888;
+    
+}
+
+table.datatable td {
+     border-color: #bbb;
+}
+
+.datatable a:hover {
+    color: red;
+}
 
 table.datatable th.row_title {
     width: 20%;
@@ -59,6 +115,7 @@ table.datatable th.row_title {
 table.datatable th.detail_header {
     color: black;
     font-size: 140%;
+    background-color: #74B8C8;
 }
 
 table.datatable th.detail_header .small {
@@ -179,6 +236,13 @@ input {
 
 .sequence {
   width: 600px;
+  word-wrap: break-word;
+  font-family : "Courier New" , Courier , monospace ;
+  font-size: 16px;
+}
+
+.sub_sequence {
+  width: 400px;
   word-wrap: break-word;
   font-family : "Courier New" , Courier , monospace ;
   font-size: 16px;

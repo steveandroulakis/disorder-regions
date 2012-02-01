@@ -8,7 +8,8 @@ from django.views.generic import DetailView
 
 from disorder_regions.disorder.ProteinListView import ProteinListView
 from disorder_regions.disorder.models import Protein, Disorderlab, \
-    Individualpreresultorigprotein
+    Individualpreresultorigprotein, Mutprotein, \
+    Individualpreresultmutprotein
 
 core_urls = patterns(
     'disorder_regions.disorder.views',
@@ -37,6 +38,16 @@ urlpatterns = patterns('',
         DetailView.as_view(
             model=Individualpreresultorigprotein,
     )),    
+    
+    (r'^mutprotein/(?P<pk>\w+)/$',
+        DetailView.as_view(
+            model=Mutprotein,
+    )),
+        
+    (r'^individualpreresultmutprotein/(?P<pk>\w+)/$',
+        DetailView.as_view(
+            model=Individualpreresultmutprotein,
+    )),        
 
     url(r'^admin/', include(admin.site.urls)),
 )
