@@ -17,16 +17,15 @@ class Protein(models.Model):
 class Disorderlab(models.Model):
     disorderlab_id = models.IntegerField(primary_key=True, db_column='disorderLab_ID')
     disorderlab_proteinuniprot_fr = models.ForeignKey(Protein, db_column='disorderLab_proteinUniprot_FR')
-    disorderlab_start = models.IntegerField(db_column='disorderLab_start')
-    disorderlab_end = models.IntegerField(db_column='disorderLab_end')
-    disorderlab_sequence = models.TextField(db_column='disorderLab_sequence')
+    disorderlab_disprotacession = models.CharField(max_length=45, db_column='disorderLab_disprotAccession')
     class Meta:
         db_table = u'disorderlab'
     def __unicode__(self):
-        return highlight_region(
-            self.disorderlab_proteinuniprot_fr.protein_sequence,
-            self.disorderlab_start,
-            self.disorderlab_end)             
+        return str(self.disorderlab_id)
+        # return highlight_region(
+        #     self.disorderlab_proteinuniprot_fr.protein_sequence,
+        #     self.disorderlab_start,
+        #     self.disorderlab_end)             
 
 class Disorderpredictorresults(models.Model):
     disorderpredictorresult_id = models.IntegerField(primary_key=True, db_column='disorderPredictorResult_ID')
@@ -109,7 +108,8 @@ class Individualpreresultorigprotein(models.Model):
         db_table = u'individualpreresultorigprotein'
         
     def __unicode__(self):
-        return highlight_region(
-            self.individualpreresultorigprotein_proteinuniprot_fr.protein_sequence,
-            self.individualpreresultorigprotein_start,
-            self.individualpreresultorigprotein_end)
+        return str(self.individualpreresultorigprotein_id)
+        # return highlight_region(
+        #     self.individualpreresultorigprotein_proteinuniprot_fr.protein_sequence,
+        #     self.individualpreresultorigprotein_start,
+        #     self.individualpreresultorigprotein_end)
