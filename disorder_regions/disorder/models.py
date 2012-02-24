@@ -8,26 +8,11 @@ class Protein(models.Model):
     protein_length = models.IntegerField()
     protein_description = models.TextField()
     protein_sequence = models.TextField()
-    protein_percentageofdisorder = models.DecimalField(decimal_places=3, max_digits=7, db_column='protein_percentageOfDisorder')
     class Meta:
         db_table = u'protein'
         
     def __unicode__(self):
-        return str(self.protein_name)        
-
-class Disorderlabfunction(models.Model):
-    disorderlabfunction_id = models.IntegerField(primary_key=True, db_column='disorderLabFunction_ID')
-    disorderlabfunction_name = models.TextField(db_column='disorderLabFunction_name')
-    class Meta:
-        db_table = u'disorderlabfunction'
-
-class Disorderlabmethod(models.Model):
-    disorderlabmethod_id = models.IntegerField(primary_key=True, db_column='disorderLabMethod_ID')
-    disorderlabmethod_name = models.TextField(db_column='disorderLabMethod_name')
-    disorderlabmethod_description = models.TextField(db_column='disorderLabMethod_description', blank=True)
-    disorderlabmethod_reference = models.TextField(db_column='disorderLabMethod_reference', blank=True)
-    class Meta:
-        db_table = u'disorderlabmethod'
+        return str(self.protein_name)
         
 class Disorderlab(models.Model):
     disorderlab_id = models.IntegerField(primary_key=True, db_column='disorderLab_ID')
@@ -35,8 +20,6 @@ class Disorderlab(models.Model):
     disorderlab_start = models.IntegerField(db_column='disorderLab_start')
     disorderlab_end = models.IntegerField(db_column='disorderLab_end')
     disorderlab_sequence = models.TextField(db_column='disorderLab_sequence')
-    disorderlab_functionid_fr = models.ForeignKey(Disorderlabfunction, db_column='disorderLab_functionID_FR')
-    disorderlab_methodid_fr = models.ForeignKey(Disorderlabmethod, db_column='disorderLab_methodID_FR')
     class Meta:
         db_table = u'disorderlab'
     def __unicode__(self):
@@ -65,7 +48,6 @@ class Predictor(models.Model):
 class Proteinmutationdisease(models.Model):
     proteinmutationdisease_id = models.IntegerField(primary_key=True, db_column='proteinMutationDisease_ID')
     proteinmutationdisease_name = models.TextField(db_column='proteinMutationDisease_name')
-    proteinmutationdisease_description = models.TextField(db_column='proteinMutationDisease_description', blank=True)
     class Meta:
         db_table = u'proteinmutationdisease'        
         
@@ -103,7 +85,6 @@ class Individualpreresultmutprotein(models.Model):
     individualpreresultmutprotein_id = models.IntegerField(primary_key=True, db_column='individualPreResultMutProtein_ID')
     individualpreresultmutprotein_mutproteinid_fr = models.ForeignKey(Mutprotein, db_column='individualPreResultMutProtein_mutProteinID_FR')
     individualpreresultmutprotein_predictorid_fr = models.ForeignKey(Predictor, db_column='individualPreResultMutProtein_predictorID_FR')
-    individualpreresultmutprotein_uniprot_fr = models.ForeignKey(Protein, db_column='individualPreResultMutProtein_Uniprot_FR')
     individualpreresultmutprotein_start = models.IntegerField(null=True, db_column='individualPreResultMutProtein_start', blank=True)
     individualpreresultmutprotein_end = models.IntegerField(null=True, db_column='individualPreResultMutProtein_end', blank=True)
     individualpreresultmutprotein_sequence = models.TextField(db_column='individualPreResultMutProtein_sequence', blank=True)
@@ -111,10 +92,11 @@ class Individualpreresultmutprotein(models.Model):
         db_table = u'individualpreresultmutprotein'
         
     def __unicode__(self):
-        return highlight_region(
-            self.individualpreresultmutprotein_uniprot_fr.protein_sequence,
-            self.individualpreresultmutprotein_start,
-            self.individualpreresultmutprotein_end)        
+        return str(self.individualpreresultmutprotein_id)
+        # return highlight_region(
+        #     self.individualpreresultmutprotein_uniprot_fr.protein_sequence,
+        #     self.individualpreresultmutprotein_start,
+        #     self.individualpreresultmutprotein_end)        
 
 class Individualpreresultorigprotein(models.Model):
     individualpreresultorigprotein_id = models.IntegerField(primary_key=True, db_column='individualPreResultOrigProtein_ID')

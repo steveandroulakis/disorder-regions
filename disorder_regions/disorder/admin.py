@@ -3,8 +3,6 @@ from django.contrib import admin
 
 admin.site.register(Protein)
 admin.site.register(Disorderlab)
-admin.site.register(Disorderlabfunction)
-admin.site.register(Disorderlabmethod)
 admin.site.register(Individualpreresultorigprotein)
 admin.site.register(Mutprotein)
 admin.site.register(Proteinmutationdisease)
