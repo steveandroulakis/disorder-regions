@@ -91,11 +91,10 @@ class Individualpreresultmutprotein(models.Model):
         db_table = u'individualpreresultmutprotein'
         
     def __unicode__(self):
-        return str(self.individualpreresultmutprotein_id)
-        # return highlight_region(
-        #     self.individualpreresultmutprotein_uniprot_fr.protein_sequence,
-        #     self.individualpreresultmutprotein_start,
-        #     self.individualpreresultmutprotein_end)        
+        return highlight_region(
+            self.individualpreresultmutprotein_mutproteinid_fr.mutprotein_proteinuniprot_fr.protein_sequence,
+            self.individualpreresultmutprotein_start,
+            self.individualpreresultmutprotein_end)        
 
 class Individualpreresultorigprotein(models.Model):
     individualpreresultorigprotein_id = models.IntegerField(primary_key=True, db_column='individualPreResultOrigProtein_ID')
@@ -108,8 +107,7 @@ class Individualpreresultorigprotein(models.Model):
         db_table = u'individualpreresultorigprotein'
         
     def __unicode__(self):
-        return str(self.individualpreresultorigprotein_id)
-        # return highlight_region(
-        #     self.individualpreresultorigprotein_proteinuniprot_fr.protein_sequence,
-        #     self.individualpreresultorigprotein_start,
-        #     self.individualpreresultorigprotein_end)
+        return highlight_region(
+            self.individualpreresultorigprotein_proteinuniprot_fr.protein_sequence,
+            self.individualpreresultorigprotein_start,
+            self.individualpreresultorigprotein_end)

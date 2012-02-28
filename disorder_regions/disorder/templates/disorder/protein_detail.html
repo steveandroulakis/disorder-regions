@@ -43,10 +43,6 @@
 				<td><div class="sequence">
                 		{{ protein.protein_sequence }}
 			        </div></td>
-			</tr>	
-			<tr>
-			    <th class="detail_subheader">Disorder %</th>
-				<td>{{ protein.protein_percentageofdisorder }} %</td>
 			</tr>																																																					
 			</table><a name="original_protein"/><a name="lab"/>
 			<table class="datatable">
@@ -54,26 +50,13 @@
 			    <th colspan="5" class="detail_header">Original Protein</th>
 			</tr>
 			<tr>
-			    <th colspan="5">Lab</th>
+			    <th>Lab</th>
 			<tr>
 				<th class="table_subheader">Sequence</td>
-				<th class="table_subheader">Start</td>
-				<th class="table_subheader">End</td>
-				<th class="table_subheader">Function</td>
-				<th class="table_subheader">Method</td>
 			</tr>
 			{% for disorderlab in protein.disorderlab_set.all %}
 			<tr>
-				<td>
-					<a class="toggleNext" href="../../disorderlab/{{disorderlab.disorderlab_id}}">
-					<div class="sequence">{{ disorderlab.disorderlab_sequence }}</div>
-					</a>
-					<div class="hidden"></div>
-				</td>
-				<td>{{ disorderlab.disorderlab_start }}</td>
-				<td>{{ disorderlab.disorderlab_end }}</td>
-				<td>{{ disorderlab.disorderlab_functionid_fr.disorderlabfunction_name }}</td>
-				<td>{{ disorderlab.disorderlab_methodid_fr.disorderlabmethod_name }}</td>				
+				<td>todo: {{ disorderlab_disprotacession }}</td>			
 			</tr>
 			{% endfor %}
 			</table>
@@ -126,10 +109,10 @@
 					</a>
 					<div class="hidden"></div>
 				</td>
-				<td>{{ mutprotein.mutprotein_orginalaa }}</td>
-				<td>{{ mutprotein.mutprotein_mutatedaa }}</td>
-				<td>{{ mutprotein.mutprotein_mutationposition }}</td>				
-				<td>{{ mutprotein.mutprotein_disease_id_fr.proteinmutationdisease_name }}</td>					
+				<td valign="top">{{ mutprotein.mutprotein_orginalaa }}</td>
+				<td valign="top">{{ mutprotein.mutprotein_mutatedaa }}</td>
+				<td valign="top">{{ mutprotein.mutprotein_mutationposition }}</td>				
+				<td valign="top">{{ mutprotein.mutprotein_disease_id_fr.proteinmutationdisease_name }}</td>					
 			</tr>
 			{% endfor %}																																																							
 			</table>			
