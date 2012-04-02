@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}- Diseases{% endblock %}
+{% block content %}
+	
+<table class="datatable">
+<tr>
+    <th colspan="3" class="detail_header">Diseases ({{proteinmutationdisease_list.count}} found)</th>
+</tr>			   
+<tr>
+	<th class="table_subheader">Name</th>
+	<th class="table_subheader">Proteins</th>
+</tr>
+{%for proteinmutationdisease in proteinmutationdisease_list %}
+        <tr>
+             <td><a href="/protein/disease/{{proteinmutationdisease.proteinmutationdisease_id}}/">{{ proteinmutationdisease.proteinmutationdisease_name }}</a></td>            
+             <td>{{ proteinmutationdisease.num_proteins }}</td>            
+        </tr>        
+{% endfor %}																																																							
+</table>
+
+{% endblock %}
