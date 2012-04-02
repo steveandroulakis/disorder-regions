@@ -7,6 +7,9 @@ admin.autodiscover()
 from django.views.generic import DetailView
 
 from disorder_regions.disorder.ProteinListView import ProteinListView
+from disorder_regions.disorder.ProteinDetailView import ProteinDetailView
+from disorder_regions.disorder.MutProteinDetailView import MutProteinDetailView
+
 from disorder_regions.disorder.models import Protein, Disorderlab, \
     Individualpreresultorigprotein, Mutprotein, \
     Individualpreresultmutprotein
@@ -25,9 +28,8 @@ urlpatterns = patterns('',
     ),
     
     (r'^protein/(?P<pk>\w+)/$',
-        DetailView.as_view(
-            model=Protein,
-    )),    
+        ProteinDetailView.as_view()
+    ),
     
     (r'^disorderlab/(?P<pk>\w+)/$',
         DetailView.as_view(
@@ -40,9 +42,8 @@ urlpatterns = patterns('',
     )),    
     
     (r'^mutprotein/(?P<pk>\w+)/$',
-        DetailView.as_view(
-            model=Mutprotein,
-    )),
+        MutProteinDetailView.as_view()
+    ),
         
     (r'^individualpreresultmutprotein/(?P<pk>\w+)/$',
         DetailView.as_view(

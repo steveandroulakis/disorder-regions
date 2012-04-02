@@ -56,41 +56,45 @@
 			</tr>
 			{% for disorderlab in protein.disorderlab_set.all %}
 			<tr>
-				<td>todo: {{ disorderlab_disprotacession }}</td>			
+				<td>{{ disorderlab.disorderlab_disprotacession_nullcheck }}</td>			
 			</tr>
 			{% endfor %}
 			</table>
 			<a name="predicted"/>
-			<table class="datatable">	
+			<table class="datatable">
 			<tr>
-			    <th colspan="4">Predicted</th>
-			</tr>			
+			    <th colspan="3" class="detail_header">Original Protein: Predicted</th>
+			</tr>			   
+			{% for predictor, individualpreresultorigprotein_query in individualpreresultorigprotein_group %}			 	
+			<tr>
+			    <th colspan="3">Predictor: {{predictor.predictor_name}}</th>
+			</tr>
+			{% if forloop.first %}			
 			<tr>
 				<th class="table_subheader">Sequence</th>
 				<th class="table_subheader">Start</th>
 				<th class="table_subheader">End</th>
-				<th class="table_subheader">Predictor</th>
 			</tr>
-			{% for individualpreresultorigprotein in protein.individualpreresultorigprotein_set.all %}
-			<tr>
-				<td>
-					<a class="toggleNext" href="../../individualpreresultorigprotein/
-						{{individualpreresultorigprotein.individualpreresultorigprotein_id}}">
-					<div class="sequence">{{ individualpreresultorigprotein.individualpreresultorigprotein_sequence }}</div>
-					</a>
-					<div class="hidden"></div>
-				</td>
-				<td>{{ individualpreresultorigprotein.individualpreresultorigprotein_start }}</td>
-				<td>{{ individualpreresultorigprotein.individualpreresultorigprotein_end }}</td>
-				<td>{{ individualpreresultorigprotein.individualpreresultorigprotein_predictorid_fr.predictor_name }}</td>				
-			</tr>
+			{% endif %}
+			{%for individualpreresultorigprotein in individualpreresultorigprotein_query %}
+            <tr>
+                         <td>
+                             <a class="toggleNext" href="../../individualpreresultorigprotein/{{individualpreresultorigprotein.individualpreresultorigprotein_id}}">
+                             <div class="sequence">{{ individualpreresultorigprotein.individualpreresultorigprotein_sequence }}</div>
+                             </a>
+                             <div class="hidden"></div>
+                         </td>
+                         <td>{{ individualpreresultorigprotein.individualpreresultorigprotein_start }}</td>
+                         <td>{{ individualpreresultorigprotein.individualpreresultorigprotein_end }}</td>            
+                     </tr>
+			{% endfor %}
 			{% endfor %}																																																							
 			</table>
 			
 			<a name="mutated_proteins"/>
 			<table class="datatable">	
 			<tr>
-			    <th colspan="5">Mutated Proteins</th>
+			    <th colspan="5" class="detail_header">Mutated Proteins</th>
 			</tr>			
 			<tr>
 				<th class="table_subheader">Sequence and scores</th>

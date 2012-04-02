@@ -22,6 +22,12 @@ class Disorderlab(models.Model):
         db_table = u'disorderlab'
     def __unicode__(self):
         return str(self.disorderlab_id)
+    def disorderlab_disprotacession_nullcheck(self):
+        if self.disorderlab_disprotacession == None \
+            or 'null':
+            return 'None'
+        else:
+            return self.disorderlab_disprotacession
         # return highlight_region(
         #     self.disorderlab_proteinuniprot_fr.protein_sequence,
         #     self.disorderlab_start,

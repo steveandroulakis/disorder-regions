@@ -26,17 +26,19 @@
 {% endfor %}																																																							
 </table>
 
-<table class="datatable">	
+<table class="datatable">
+{% for predictor, individualpreresultmutprotein in individualpreresultmutprotein_group %}	
 <tr>
-    <th colspan="4">Predicted</th>
-</tr>			
+    <th colspan="3">Predictor: {{predictor.predictor_name}}</th>
+</tr>
+{% if forloop.first %}
 <tr>
 	<th class="table_subheader">Sequence</th>
 	<th class="table_subheader">Start</th>
 	<th class="table_subheader">End</th>
-	<th class="table_subheader">Predictor</th>
-</tr>
-{% for individualpreresultmutprotein in mutprotein.individualpreresultmutprotein_set.all %}
+</tr>			 
+{% endif %}
+{% for individualpreresultmutprotein in individualpreresultmutprotein %}
 <tr>
 	<td>
 		<a class="toggleNext" href="../../individualpreresultmutprotein/
@@ -47,7 +49,7 @@
 	</td>
 	<td>{{ individualpreresultmutprotein.individualpreresultmutprotein_start }}</td>
 	<td>{{ individualpreresultmutprotein.individualpreresultmutprotein_end }}</td>
-	<td>{{ individualpreresultmutprotein.individualpreresultmutprotein_predictorid_fr.predictor_name }}</td>				
 </tr>
+{% endfor %}
 {% endfor %}																																																							
 </table>
