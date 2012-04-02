@@ -101,14 +101,13 @@
 				<th class="table_subheader">Original</th>
 				<th class="table_subheader">Mutated</th>
 				<th class="table_subheader">Position</th>
-				<th class="table_subheader">Disease</th>
 			</tr>
 			{% for mutprotein in protein.mutprotein_set.all %}
 			<tr>
 				<td>
 					<a class="toggleNext" href="../../mutprotein/
 						{{mutprotein.mutprotein_id}}">
-					<em>View</em>	
+					Disease:<em> {{mutprotein.mutprotein_disease_id_fr.proteinmutationdisease_name}}</em>	
 					<div class="sequence"></div>
 					</a>
 					<div class="hidden"></div>
@@ -116,7 +115,6 @@
 				<td valign="top">{{ mutprotein.mutprotein_orginalaa }}</td>
 				<td valign="top">{{ mutprotein.mutprotein_mutatedaa }}</td>
 				<td valign="top">{{ mutprotein.mutprotein_mutationposition }}</td>				
-				<td valign="top">{{ mutprotein.mutprotein_disease_id_fr.proteinmutationdisease_name }}</td>					
 			</tr>
 			{% endfor %}																																																							
 			</table>			

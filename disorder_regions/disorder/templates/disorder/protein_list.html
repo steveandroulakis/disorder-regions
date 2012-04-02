@@ -3,7 +3,7 @@
 {% block title %}- Proteins{% endblock %}
 {% block content %}
 {% include "disorder/includes/pagination.html" %}
-    <h2>Proteins</h2>
+    <h2>{{protein_list.count}} Proteins {% if disease %} for <em>{{disease.proteinmutationdisease_name}}</em>{% endif %}</h2>
     <ul>
 		<div>
 			<table class="datatable">
@@ -13,7 +13,7 @@
 			</tr>
 			{% for protein in protein_list %}
 			<tr>
-			    <td><a href="{{protein.protein_uniprotaccession}}">{{ protein.protein_uniprotaccession }}</a></td>
+			    <td><a href="/protein/{{protein.protein_uniprotaccession}}">{{ protein.protein_uniprotaccession }}</a></td>
 				<td>{{ protein.protein_name }}</td>									
 			</tr>
 			{% endfor %}																																						
