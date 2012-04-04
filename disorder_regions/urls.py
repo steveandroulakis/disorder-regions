@@ -26,12 +26,15 @@ predicted_urls = patterns(
     (r'^iupred-short/1/', 'iupred_short_one'),
     (r'^iupred-short/2/', 'iupred_short_two'),
     (r'^iupred-short/3/', 'iupred_short_three'),
+    (r'^iupred-short/4/', 'iupred_short_four'),
     (r'^iupred-long/1/', 'iupred_long_one'),
     (r'^iupred-long/2/', 'iupred_long_two'),
     (r'^iupred-long/3/', 'iupred_long_three'),
+    (r'^iupred-long/4/', 'iupred_long_four'),
     (r'^vsl2b/1/', 'vsl2b_one'),
     (r'^vsl2b/2/', 'vsl2b_two'),
-    (r'^vsl2b/3/', 'vsl2b_three'),        
+    (r'^vsl2b/3/', 'vsl2b_three'),
+    (r'^vsl2b/4/', 'vsl2b_four'),         
     )
 
 urlpatterns = patterns('',
