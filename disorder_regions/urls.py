@@ -18,11 +18,28 @@ from disorder_regions.disorder.models import Protein, Disorderlab, \
 core_urls = patterns(
     'disorder_regions.disorder.views',
     (r'^$', 'index'),
+    (r'^predicted/$', 'predicted'),
 )
+
+predicted_urls = patterns(
+    'disorder_regions.disorder.views',
+    (r'^iupred-short/1/', 'iupred_short_one'),
+    (r'^iupred-short/2/', 'iupred_short_two'),
+    (r'^iupred-short/3/', 'iupred_short_three'),
+    (r'^iupred-long/1/', 'iupred_long_one'),
+    (r'^iupred-long/2/', 'iupred_long_two'),
+    (r'^iupred-long/3/', 'iupred_long_three'),
+    (r'^vsl2b/1/', 'vsl2b_one'),
+    (r'^vsl2b/2/', 'vsl2b_two'),
+    (r'^vsl2b/3/', 'vsl2b_three'),        
+    )
 
 urlpatterns = patterns('',
 
     (r'', include(core_urls)),
+    
+    # Predicted urls
+    (r'^predicted/', include(predicted_urls)),    
     
     (r'^disease/$',
         DiseaseListView.as_view()

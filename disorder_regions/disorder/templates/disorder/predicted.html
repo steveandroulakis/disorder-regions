@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block script %}
+{% endblock %}
+{% block content %}
+<div class="index-container">
+
+    <h1>Results of Predictions</h1>
+
+    <h2>By predictor:</h2>
+	<p>
+	    <strong>VSL2B</strong>
+        <ul>
+            <li><strong>Case 1:</strong>
+                <a href="vsl2b/1/">Selecting all the mutations that are predicted in disorder regions (score>=0.5). 
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/vsl2b/case1.csv">[csv]</a>
+            </li>
+            <li><strong>Case 2:</strong>
+                <a href="vsl2b/2/">Selecting all the mutations that are NOT predicted in disorder regions (score<0.5). 
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/vsl2b/case2.csv">[csv]</a>
+            </li>
+            <li><strong>Case 3:</strong>
+                <a href="vsl2b/3/">All the proteins in Case 1 that are related to disease
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/vsl2b/case3.csv">[csv]</a>
+            </li> 
+            <li><strong>Case 4:</strong>
+                <a href="vsl2b/4/">All the proteins in Case 1 that are NOT related to disease
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/vsl2b/case4.csv">[csv]</a>
+            </li>                       
+        </ul>
+	    <strong>IUPRED-short</strong>
+	    <ul>
+	        <li><strong>Case 1:</strong>
+	            <a href="iupred-short/1/">Selecting all the mutations that are predicted in disorder regions (score>=0.5). 
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/iupred-short/case1.csv">[csv]</a>
+            </li>
+	        <li><strong>Case 2:</strong>
+	            <a href="iupred-short/2/">Selecting all the mutations that are NOT predicted in disorder regions (score<0.5). 
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/iupred-short/case2.csv">[csv]</a>
+            </li>
+	        <li><strong>Case 3:</strong>
+	            <a href="iupred-short/3/">All the proteins in Case 1 that are related to disease
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/iupred-short/case3.csv">[csv]</a>
+            </li> 
+	        <li><strong>Case 4:</strong>
+	            <a href="iupred-short/4/">All the proteins in Case 1 that are NOT related to disease
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/iupred-short/case4.csv">[csv]</a>
+            </li>                       
+        </ul>
+	    <strong>IUPRED-long</strong>
+        <ul>
+            <li><strong>Case 1:</strong>
+                <a href="iupred-long/1/">Selecting all the mutations that are predicted in disorder regions (score>=0.5). 
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/iupred-long/case1.csv">[csv]</a>
+            </li>
+            <li><strong>Case 2:</strong>
+                <a href="iupred-long/2/">Selecting all the mutations that are NOT predicted in disorder regions (score<0.5). 
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/iupred-long/case2.csv">[csv]</a>
+            </li>
+            <li><strong>Case 3:</strong>
+                <a href="iupred-long/3/">All the proteins in Case 1 that are related to disease
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/iupred-long/case3.csv">[csv]</a>
+            </li> 
+            <li><strong>Case 4:</strong>
+                <a href="iupred-long/4/">All the proteins in Case 1 that are NOT related to disease
+                </a> *** 
+                <a href="{{ STATIC_URL }}/csv/iupred-long/case4.csv">[csv]</a>
+            </li>                       
+        </ul>
+	</p>
+			
+</div>
+{% endblock %}
